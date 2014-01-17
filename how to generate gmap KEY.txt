@@ -1,0 +1,9 @@
+keytool.exe -list -v -alias androiddebugkey -keystore C:\Users\Caine\.android\debug.keystore -storepass android -keypass android
+
+Goto https://code.google.com/apis/console/
+Search GMAP Service API Android V2 -> Activate it
+Fill in the SHA1 Key + ";" + "com.example"
+
+
+FOR RELEASED VERSION :
+keytool -list -v -keystore your_keystore_name -alias your_alias_name

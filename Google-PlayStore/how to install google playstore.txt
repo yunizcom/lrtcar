@@ -1,0 +1,3 @@
+adb install com.google.android.gms-19032013.apk
+
+adb install com.android.vending-19032013.apk
