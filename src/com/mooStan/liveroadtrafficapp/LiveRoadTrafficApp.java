@@ -82,7 +82,7 @@ public class LiveRoadTrafficApp extends Activity {
 	private boolean gpsMode = false;
 	private String weatherString = "";
 	
-	private ImageView fbShare, normalMap, sateliteMap, lagendaImg, sateliteSwitch, popboxOK_btn;
+	private ImageView fbShare, normalMap, sateliteMap, lagendaImg, sateliteSwitch, popboxOK_btn, ic_map_label;
 	private RelativeLayout popbox, mainTop;
 	private LinearLayout popboxCenter;
 	private TextView popboxMSG, weatherOverlay, weatherOverlayShadow;
@@ -111,6 +111,7 @@ public class LiveRoadTrafficApp extends Activity {
 	    sateliteMap = (ImageView) findViewById(R.id.sateliteMap);
 	    lagendaImg = (ImageView) findViewById(R.id.lagendaImg);
 	    sateliteSwitch = (ImageView) findViewById(R.id.sateliteSwitch);
+	    ic_map_label = (ImageView) findViewById(R.id.ic_map_label);
 	    
 	    popboxOK_btn = (ImageView) findViewById(R.id.popboxOK_btn);
 	    
@@ -206,14 +207,19 @@ public class LiveRoadTrafficApp extends Activity {
                 googleMap.setTrafficEnabled(true);
                
 				centerMapOnMyLocation();
-                //getWeatherData(5.398448,100.294014);
+                /*getWeatherData(5.398448,100.294014);
+                
+                Date d1 =new Date();
+            	SimpleDateFormat date = new SimpleDateFormat("EEEE,\nMMM dd yyyy\nhh:mm aa");
+            	
+            	popBox(3,weatherString + date.format(d1));*/
                 
                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 14));
 
                 //Marker ciu = googleMap.addMarker(new MarkerOptions().position(HAMBURG).title("You at here!"));
             	
             }else{
-            	Log.v("debug","map failed");
+            	//Log.v("debug","map failed");
             }
         }
     }
@@ -455,6 +461,7 @@ public class LiveRoadTrafficApp extends Activity {
     	
     	weatherOverlayShadow.setVisibility(View.INVISIBLE);
     	weatherOverlay.setVisibility(View.INVISIBLE);
+    	ic_map_label.setVisibility(View.INVISIBLE);
     	
     	buttonClickable(false);
     	switch(type){
@@ -476,8 +483,10 @@ public class LiveRoadTrafficApp extends Activity {
 	    	case 3:{
 	    		popboxCenter.setVisibility(View.INVISIBLE);
 	    		
-	    		weatherOverlayShadow.setText(pmsg);
-	    		weatherOverlayShadow.setVisibility(View.VISIBLE);
+	    		//weatherOverlayShadow.setText(pmsg);
+	    		//weatherOverlayShadow.setVisibility(View.VISIBLE);
+	    		
+	    		ic_map_label.setVisibility(View.VISIBLE);
 	    		
 	    		weatherOverlay.setText(pmsg);
 	    		weatherOverlay.setVisibility(View.VISIBLE);
@@ -628,7 +637,7 @@ public class LiveRoadTrafficApp extends Activity {
 	            }
 	        });
 	        Bundle postParams = request.getParameters(); // <-- THIS IS IMPORTANT
-	        postParams.putString("name", message + " Get your Live Road Traffic App here http://goo.gl/zcBrSS #LiveRoadTrafficApp");
+	        postParams.putString("name", message + " Get your Live Road Traffic App here http://goo.gl/u5mbYx #LiveRoadTrafficApp");
 	        postParams.putString("link","http://goo.gl/zcBrSS");
 	        request.setParameters(postParams);
 	        request.executeAsync();
