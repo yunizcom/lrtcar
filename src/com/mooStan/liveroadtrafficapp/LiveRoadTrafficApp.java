@@ -64,6 +64,7 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -79,13 +80,14 @@ public class LiveRoadTrafficApp extends Activity {
 	static final LatLng KIEL = new LatLng(53.551, 9.993);
 	private GoogleMap googleMap;
 	private Location glolocation;
-	private boolean gpsMode = false;
-	private String weatherString = "";
+	private boolean gpsMode = false, fbCaptionFilled = false;
+	private String weatherString = "", fbCaption = "";
 	
-	private ImageView fbShare, normalMap, sateliteMap, lagendaImg, sateliteSwitch, popboxOK_btn, ic_map_label;
+	private ImageView fbShare, normalMap, sateliteMap, lagendaImg, sateliteSwitch, popboxOK_btn, ic_map_label, ic_close;
 	private RelativeLayout popbox, mainTop;
 	private LinearLayout popboxCenter;
 	private TextView popboxMSG, weatherOverlay, weatherOverlayShadow;
+	private EditText fbmsg;
 	
 	private static final List<String> PERMISSIONS = Arrays.asList("publish_actions");
 	private static final String PENDING_PUBLISH_KEY = "pendingPublishReauthorization";
@@ -112,6 +114,7 @@ public class LiveRoadTrafficApp extends Activity {
 	    lagendaImg = (ImageView) findViewById(R.id.lagendaImg);
 	    sateliteSwitch = (ImageView) findViewById(R.id.sateliteSwitch);
 	    ic_map_label = (ImageView) findViewById(R.id.ic_map_label);
+	    ic_close = (ImageView) findViewById(R.id.ic_close);
 	    
 	    popboxOK_btn = (ImageView) findViewById(R.id.popboxOK_btn);
 	    
@@ -119,10 +122,12 @@ public class LiveRoadTrafficApp extends Activity {
 	    mainTop = (RelativeLayout) findViewById(R.id.mainTop);
 	    popboxCenter = (LinearLayout) findViewById(R.id.popboxCenter);
 	    
-	    setStageBackground_relative(popbox,"backgrounds/opacity_50_bg.png");
+	    //setStageBackground_relative(popbox,"backgrounds/opacity_50_bg.png");
 		setStageBackground_linear(popboxCenter,"backgrounds/popUp_bg.png");
 	    
 	    popboxMSG = (TextView) findViewById(R.id.popboxMSG);
+	    fbmsg = (EditText) findViewById(R.id.fbmsg);
+	    
 	    weatherOverlay = (TextView) findViewById(R.id.weatherOverlay);
 	    weatherOverlayShadow = (TextView) findViewById(R.id.weatherOverlayShadow);
 	    
@@ -270,7 +275,8 @@ public class LiveRoadTrafficApp extends Activity {
 		            	fbShare.setAlpha(255);
 
 		            	//publishPhoto(loadBitmapFromView_BITMAP(mainTop),"Look on the traffic!");
-		            	captureMapScreen();
+		            	//captureMapScreen();
+		            	popBox(4,"Insert your snapshot caption at below :");
 
 		                break;
 		            }
@@ -360,7 +366,36 @@ public class LiveRoadTrafficApp extends Activity {
 		            case MotionEvent.ACTION_UP:{
 		            	popboxOK_btn.setAlpha(255);
 
-		            	popBox(0,"");
+		            	if(fbCaptionFilled == false){
+		            		popBox(0,"");
+		            	}else{
+		            		popBox(0,"");
+		            		fbCaptionFilled = false;
+		            		fbCaption = fbmsg.getText().toString();
+		            		captureMapScreen();
+		            	}
+		            	
+		                break;
+		            }
+	            }
+	            return true;
+	        }
+	    });
+    	
+    	ic_close.setOnTouchListener(new View.OnTouchListener() {
+	        @Override
+	        public boolean onTouch(View arg0, MotionEvent arg1) {
+	            switch (arg1.getAction()) {
+		            case MotionEvent.ACTION_DOWN: {
+		            	ic_close.setAlpha(180);
+
+		                break;
+		            }
+		            case MotionEvent.ACTION_UP:{
+		            	ic_close.setAlpha(255);
+
+	            		fbCaptionFilled = false;
+	            		popBox(0,"");
 		            	
 		                break;
 		            }
@@ -451,6 +486,8 @@ public class LiveRoadTrafficApp extends Activity {
     private void popBox(int type, String pmsg){
     	/*reset 1st*/
     	popbox.setVisibility(View.INVISIBLE);
+    	popboxMSG.setVisibility(View.VISIBLE);
+    	ic_close.setVisibility(View.INVISIBLE);
 		popboxMSG.setText(pmsg);
 		buttonClickable(true);
 		/*reset 1st*/
@@ -458,6 +495,7 @@ public class LiveRoadTrafficApp extends Activity {
 		popboxCenter.setVisibility(View.VISIBLE);
     	popbox.setVisibility(View.VISIBLE);
     	popboxOK_btn.setVisibility(View.INVISIBLE);
+    	fbmsg.setVisibility(View.INVISIBLE);
     	
     	weatherOverlayShadow.setVisibility(View.INVISIBLE);
     	weatherOverlay.setVisibility(View.INVISIBLE);
@@ -491,6 +529,13 @@ public class LiveRoadTrafficApp extends Activity {
 	    		weatherOverlay.setText(pmsg);
 	    		weatherOverlay.setVisibility(View.VISIBLE);
 
+	    		break;
+	    	}
+	    	case 4:{
+	    		fbCaptionFilled = true;
+	    		fbmsg.setVisibility(View.VISIBLE);
+	    		ic_close.setVisibility(View.VISIBLE);
+	    		popboxOK_btn.setVisibility(View.VISIBLE);
 	    		break;
 	    	}
     	}
@@ -717,7 +762,12 @@ public class LiveRoadTrafficApp extends Activity {
                     //cacheMapImage.setImageBitmap(bmOverlay);
                     
                     //publishPhoto(loadBitmapFromView_BITMAP(mainTop),"Look at the traffic!");
-                    publishPhoto(bmOverlay,"My road traffic check!");
+                    
+                    if(fbCaption == "" || fbCaption.length() == 0 || fbCaption == null){
+                    	fbCaption = "My road traffic check!";
+                    }
+                    
+                    publishPhoto(bmOverlay,fbCaption);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

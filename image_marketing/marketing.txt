@@ -2,6 +2,10 @@ Moo - Live Road Traffic
 
 Get your city road traffic updates visually.
 
+Monitoring your neighborhood road traffic has never been easier !
+
+Extremely light without complicated features that you don't need, neat interface design with social snap shot broadcast embedded.
+
 Introduction :
 
 This is the most simplest Live Road Traffic App you can get on the market.
@@ -9,3 +13,12 @@ Check the road traffic live at your work place and neighbourhood. Ignore all the
 
 Snap shot the traffic and share at your Facecbook wall to inform your friends and family. 
 Install this app now and have fun with your traffic checking.
+
+
+-Map with traffic reports
+-Road traffic reports in visual presentation
+-Snap shot and social sharing
+
+
+
+gps, map, road, traffic, reports, city, town, live traffic reports

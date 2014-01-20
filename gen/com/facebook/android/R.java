@@ -8,30 +8,30 @@ package com.facebook.android;
 
 public final class R {
 	public static final class id {
-		public static final int com_facebook_picker_title = 0x7f05001d;
-		public static final int com_facebook_picker_row_activity_circle = 0x7f050019;
-		public static final int com_facebook_usersettingsfragment_login_button = 0x7f05002a;
-		public static final int com_facebook_usersettingsfragment_logo_image = 0x7f050028;
-		public static final int com_facebook_picker_checkbox = 0x7f05001a;
+		public static final int com_facebook_picker_title = 0x7f05001f;
+		public static final int com_facebook_picker_row_activity_circle = 0x7f05001b;
+		public static final int com_facebook_usersettingsfragment_login_button = 0x7f05002c;
+		public static final int com_facebook_usersettingsfragment_logo_image = 0x7f05002a;
+		public static final int com_facebook_picker_checkbox = 0x7f05001c;
 		public static final int normal = 0x7f050001;
-		public static final int com_facebook_usersettingsfragment_profile_name = 0x7f050029;
-		public static final int com_facebook_picker_search_text = 0x7f050027;
-		public static final int picker_subtitle = 0x7f050025;
-		public static final int com_facebook_picker_title_bar_stub = 0x7f050023;
-		public static final int com_facebook_picker_profile_pic_stub = 0x7f05001c;
-		public static final int com_facebook_picker_image = 0x7f05001b;
-		public static final int com_facebook_picker_activity_circle = 0x7f050017;
-		public static final int com_facebook_picker_top_bar = 0x7f050020;
-		public static final int com_facebook_picker_list_section_header = 0x7f05001f;
-		public static final int com_facebook_picker_title_bar = 0x7f050024;
-		public static final int com_facebook_login_activity_progress_bar = 0x7f050018;
-		public static final int com_facebook_picker_checkbox_stub = 0x7f05001e;
-		public static final int com_facebook_picker_divider = 0x7f050022;
-		public static final int com_facebook_picker_list_view = 0x7f050016;
+		public static final int com_facebook_usersettingsfragment_profile_name = 0x7f05002b;
+		public static final int com_facebook_picker_search_text = 0x7f050029;
+		public static final int picker_subtitle = 0x7f050027;
+		public static final int com_facebook_picker_title_bar_stub = 0x7f050025;
+		public static final int com_facebook_picker_profile_pic_stub = 0x7f05001e;
+		public static final int com_facebook_picker_image = 0x7f05001d;
+		public static final int com_facebook_picker_activity_circle = 0x7f050019;
+		public static final int com_facebook_picker_top_bar = 0x7f050022;
+		public static final int com_facebook_picker_list_section_header = 0x7f050021;
+		public static final int com_facebook_picker_title_bar = 0x7f050026;
+		public static final int com_facebook_login_activity_progress_bar = 0x7f05001a;
+		public static final int com_facebook_picker_checkbox_stub = 0x7f050020;
+		public static final int com_facebook_picker_divider = 0x7f050024;
+		public static final int com_facebook_picker_list_view = 0x7f050018;
 		public static final int small = 0x7f050005;
 		public static final int large = 0x7f050006;
-		public static final int com_facebook_search_bar_view = 0x7f050026;
-		public static final int com_facebook_picker_done_button = 0x7f050021;
+		public static final int com_facebook_search_bar_view = 0x7f050028;
+		public static final int com_facebook_picker_done_button = 0x7f050023;
 	}
 	public static final class style {
 		public static final int com_facebook_loginview_default_style = 0x7f090000;
@@ -117,7 +117,7 @@ public final class R {
 	public static final class drawable {
 		public static final int com_facebook_picker_list_selector = 0x7f020014;
 		public static final int com_facebook_button_check = 0x7f020004;
-		public static final int com_facebook_picker_default_separator_color = 0x7f020044;
+		public static final int com_facebook_picker_default_separator_color = 0x7f020045;
 		public static final int com_facebook_button_check_on = 0x7f020006;
 		public static final int com_facebook_profile_picture_blank_portrait = 0x7f02001b;
 		public static final int com_facebook_picker_list_selector_background_transition = 0x7f020015;
