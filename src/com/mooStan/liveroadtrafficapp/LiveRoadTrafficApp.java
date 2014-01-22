@@ -218,7 +218,7 @@ public class LiveRoadTrafficApp extends Activity {
             	SimpleDateFormat date = new SimpleDateFormat("EEEE,\nMMM dd yyyy\nhh:mm aa");
             	
             	popBox(3,weatherString + date.format(d1));*/
-                
+
                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 14));
 
                 //Marker ciu = googleMap.addMarker(new MarkerOptions().position(HAMBURG).title("You at here!"));
