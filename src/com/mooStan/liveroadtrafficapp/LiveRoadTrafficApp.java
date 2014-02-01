@@ -36,6 +36,8 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -44,6 +46,9 @@ import com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.mooStan.liveroadtrafficapp.R;
+import com.revmob.RevMob;
+import com.revmob.RevMobTestingMode;
+import com.revmob.ads.banner.RevMobBanner;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -63,6 +68,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -95,6 +101,8 @@ public class LiveRoadTrafficApp extends Activity {
 	
 	public Bitmap fbImg;
 	public String fbMsg;
+	
+	private RevMob revmob;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -193,6 +201,19 @@ public class LiveRoadTrafficApp extends Activity {
 		    Log.e("exception", e.toString());
 		}
 		*/
+	    
+	    /* for AdMob in GMC */
+	    AdView adView = (AdView)this.findViewById(R.id.adView);
+	    AdRequest adRequest = new AdRequest.Builder()
+	        .build();
+	    adView.loadAd(adRequest);
+	    /* for AdMob in GMC */
+	    
+	    /*----RevMob Ads----*/
+		revmob = RevMob.start(this);
+//revmob.setTestingMode(RevMobTestingMode.WITH_ADS);
+		revmob.showFullscreen(this);
+        /*----RevMob Ads----*/
 	}
 	
 	/**
@@ -781,7 +802,10 @@ public class LiveRoadTrafficApp extends Activity {
     @Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    super.onActivityResult(requestCode, resultCode, data);
-	    Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+	    //Log.v("debug",requestCode + "|" + resultCode + "|" + data);
+	    if(data != null){
+	    	Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+	    }
 	}
     
     @Override
@@ -789,6 +813,8 @@ public class LiveRoadTrafficApp extends Activity {
         super.onResume();
 
         initilizeMap();
+        
+        revmob.showFullscreen(this);
     }
 
 }
